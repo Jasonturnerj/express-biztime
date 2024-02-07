@@ -1,3 +1,6 @@
+/** Routes for invoices. */
+
+
 const express = require("express");
 const ExpressError = require("../expressError")
 const db = require("../db");
@@ -64,7 +67,6 @@ router.get("/:id", async function (req, res, next) {
   }
 });
 
-
 router.post("/", async function (req, res, next) {
   try {
     let {comp_code, amt} = req.body;
@@ -124,13 +126,6 @@ router.put("/:id", async function (req, res, next) {
   }
 
 });
-
-
-/** DELETE /[code] => delete invoice
- *
- * => {status: "deleted"}
- *
- */
 
 router.delete("/:id", async function (req, res, next) {
   try {

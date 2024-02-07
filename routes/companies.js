@@ -5,13 +5,6 @@ const db = require("../db");
 
 let router = new express.Router();
 
-
-/** GET / => list of companies.
- *
- * =>  {companies: [{code, name, descrip}, {code, name, descrip}, ...]}
- *
- * */
-
 router.get("/", async function (req, res, next) {
   try {
     const result = await db.query(
@@ -27,13 +20,6 @@ router.get("/", async function (req, res, next) {
     return next(err);
   }
 });
-
-
-/** GET /[code] => detail on company
- *
- * =>  {company: {code, name, descrip, invoices: [id, ...]}}
- *
- * */
 
 router.get("/:code", async function (req, res, next) {
   try {
@@ -70,13 +56,6 @@ router.get("/:code", async function (req, res, next) {
   }
 });
 
-
-/** POST / => add new company
- *
- * {name, descrip}  =>  {company: {code, name, descrip}}
- *
- * */
-
 router.post("/", async function (req, res, next) {
   try {
     let {name, description} = req.body;
@@ -95,13 +74,6 @@ router.post("/", async function (req, res, next) {
     return next(err);
   }
 });
-
-
-/** PUT /[code] => update company
- *
- * {name, descrip}  =>  {company: {code, name, descrip}}
- *
- * */
 
 router.put("/:code", async function (req, res, next) {
   try {
@@ -128,13 +100,6 @@ router.put("/:code", async function (req, res, next) {
 
 });
 
-
-/** DELETE /[code] => delete company
- *
- * => {status: "added"}
- *
- */
-
 router.delete("/:code", async function (req, res, next) {
   try {
     let code = req.params.code;
@@ -157,5 +122,3 @@ router.delete("/:code", async function (req, res, next) {
   }
 });
 
-
-module.exports = router;
